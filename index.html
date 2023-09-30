@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracker Web App</title>
+    <style>
+        /* Basic Reset */
+        body,
+        html,
+        h1,
+        h2,
+        h3,
+        p,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 600px) {
+            body {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Progress Tracker Web App</h1>
+    </header>
+    <main>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+        <div id="app">
+            <input v-model="newTask" @keyup.enter="addTask" placeholder="Add a new task...">
+            <ul>
+                <li v-for="task in tasks">{{ task }}</li>
+            </ul>
+        </div>
+
+        <script>
+            const App = {
+                data() {
+                    return {
+                        newTask: '',
+                        tasks: []
+                    };
+                },
+                methods: {
+                    addTask() {
+                        if (this.newTask.trim() !== '') {
+                            this.tasks.push(this.newTask.trim());
+                            this.newTask = '';
+                        }
+                    }
+                }
+            };
+
+            Vue.createApp(App).mount('#app');
+        </script>
+        <p>Welcome to the Progress Tracker Web App. Track your tasks and set milestones.</p>
+    </main>
+    <footer>
+        <p>About | Contact</p>
+    </footer>
+</body>
+
+</html>
